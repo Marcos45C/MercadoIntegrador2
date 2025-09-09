@@ -141,10 +141,17 @@ export const ApiPrueba = () => {
       <h1>Categorías</h1>
       <ul>
         {categorias.map(cat => (
-          <li key={cat.id}>{cat.description} {cat.id} {cat.title} </li> // asumiendo que los objetos tienen id y name
+          <li key={cat.id}>{cat.description} {cat.id} {cat.title} {<img 
+        src={`http://161.35.104.211:8000${cat.picture}`} 
+       alt={cat.title ?? "Imagen"} 
+/>
+}</li> // 
         ))}
       </ul>
       
     </div>
   );
 };
+
+
+<img src="http://161.35.104.211:8000/uploads/${cat.id" alt="Imagen desde servidor"/>
