@@ -6,7 +6,7 @@ export const App=()=> {
   return (
     <Routes>
       <Route path="/" element={<Login />} />
-      <Route path="/api-prueba" element={<ApiPrueba />} />
+      <Route path="/api-prueba" element={<ApiPrueba/>} />
     </Routes>
   );
 }

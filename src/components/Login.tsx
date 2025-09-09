@@ -27,9 +27,11 @@ export const Login = () => {
             console.log("token mal escrito");
             return;// salgo
             }else 
-            console.log("token aceptada ",data);
+            console.log("token aceptada ",id);
             // navegar("./components/ApiPrueba");
-            navegar("/api-prueba");
+            // navegar("/api-prueba");
+            // <ApiPrueba idTokens={id}/>
+            navegar("/api-prueba", { state: { idTokens: id } });
             } catch (error) {
             console.error("Error al obtener categorías:", error);
             }
@@ -55,5 +57,5 @@ export const Login = () => {
   )
 }
 
-
+export const a =1 ;
 

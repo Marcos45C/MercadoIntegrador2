@@ -1,6 +1,6 @@
-
+import { useLocation } from "react-router-dom"; // para navegar y que te traiga el componente 
 import { useEffect, useState } from "react";
-import { api, User } from "../peticiones";
+import { api } from "../peticiones";
 
 interface Categoria {
   id: number;
@@ -9,7 +9,10 @@ interface Categoria {
   picture?: string | null; // si viene o no 
 }
 
+
 export const ApiPrueba = () => {
+    const location = useLocation();
+    const { idTokens } = location.state; // esto se usa para navegar a este componente y te traiga el token
 
   const [id, setId] = useState("");
   const [categorias, setCategorias] = useState<Categoria[]>([]); // para recorrer el array y traer las cateorias 
@@ -19,7 +22,7 @@ export const ApiPrueba = () => {
       const response = await fetch(`${api}`, {
         method: "GET",
         headers: {
-          "Authorization": `Bearer ${User}`, // token o user
+          "Authorization": `Bearer ${idTokens }`, // token o user
           "Content-Type": "application/json"
         }
       });
@@ -30,6 +33,8 @@ export const ApiPrueba = () => {
       const data = await response.json();
       setCategorias(data); // guardo el estado
       console.log("GET data:", data);
+      console.log(id);
+      
     } catch (error) {
       console.error("Error al obtener categorías:", error);
     }
@@ -40,7 +45,7 @@ export const ApiPrueba = () => {
       const response = await fetch(`${api}`, {
         method: "POST",
         headers: {
-          "Authorization": "Bearer marko",
+          "Authorization": `Bearer ${idTokens }`,
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
@@ -111,13 +116,15 @@ export const ApiPrueba = () => {
 
   useEffect(() => {
     GETS();
+    console.log(idTokens );
+    
   }, []);
 
 
   return (
-    <>
-      <h6>traigo de la api</h6>
-      <button onClick={POST}>agregarr</button>
+    < div className="center">
+  
+      
       {/* <button onClick={GETS}>VER TODO </button> */}
       <button onClick={Delet}>ELIMINAR </button>
       <input
@@ -128,6 +135,9 @@ export const ApiPrueba = () => {
         value={id}
         onChange={(e) => setId(e.target.value)}
       />
+
+      <br/>
+      <button onClick={POST}>agregarr</button>
       <h1>Categorías</h1>
       <ul>
         {categorias.map(cat => (
@@ -135,6 +145,6 @@ export const ApiPrueba = () => {
         ))}
       </ul>
       
-    </>
+    </div>
   );
 };
