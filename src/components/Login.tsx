@@ -28,9 +28,6 @@ export const Login = () => {
             return;// salgo
             }else 
             console.log("token aceptada ",id);
-            // navegar("./components/ApiPrueba");
-            // navegar("/api-prueba");
-            // <ApiPrueba idTokens={id}/>
             navegar("/api-prueba", { state: { idTokens: id } });
             } catch (error) {
             console.error("Error al obtener categorías:", error);

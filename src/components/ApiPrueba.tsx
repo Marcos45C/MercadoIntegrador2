@@ -29,12 +29,10 @@ export const ApiPrueba = () => {
       if (!response.ok) {
         throw new Error(`Error ${response.status}`);
       }
-      
       const data = await response.json();
       setCategorias(data); // guardo el estado
       console.log("GET data:", data);
       console.log(id);
-      
     } catch (error) {
       console.error("Error al obtener categorías:", error);
     }
@@ -123,9 +121,6 @@ export const ApiPrueba = () => {
 
   return (
     < div className="center">
-  
-      
-      {/* <button onClick={GETS}>VER TODO </button> */}
       <button onClick={Delet}>ELIMINAR </button>
       <input
         type="number"
@@ -137,18 +132,22 @@ export const ApiPrueba = () => {
       />
 
       <br/>
-      <button onClick={POST}>agregarr</button>
+      {/* <button onClick={POST}>agregarr</button> */}
+      
+      {/* agregar componente para añadir categorias nuevas  */}
       <h1>Categorías</h1>
       <ul>
         {categorias.map(cat => (
-          <li key={cat.id}>{cat.description} {cat.id} {cat.title} {<img 
-        src={`http://161.35.104.211:8000${cat.picture}`} 
-       alt={cat.title ?? "Imagen"} 
-/>
-}</li> // 
+          <li key={cat.id}>{cat.description} {cat.id} {cat.title} 
+          {
+            <img 
+          src={`http://161.35.104.211:8000${cat.picture}`} 
+          alt={cat.title ?? "Imagen"} 
+          />
+          }
+          </li> 
         ))}
       </ul>
-      
     </div>
   );
 };
